@@ -73,12 +73,15 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="intro-message">
-                        <h1>Nishant Thaker</h1>
-                        <img
-                        <h3>Junior developer in the making</h3>
-                        <hr class="intro-divider">
+                        <h1 style="color:black;">Nishant Thaker</h1>
+                        <h3 style="color:black;font-weight:900;">Developer - In search of a full-time position</h3>
+                        <p style="color:black;">Shortly after college I owned and operated a small retail business for two years, realizing the grueling hours and feeling unchallenged I looked for a change. Being drawn to technology, I started to look into web development, which is what ultimately brought me to the software development bootcamp Actualize. I currently work part-time at The Difference Engine as an apprentice.
+<br>
+  Throughout the course of the bootcamp I gained many useful skills, but I feel as though the greatest skill I acquired is adapting to various languages at a quick pace, which allows me to be more diverse. I look forward to finding a development position that allows me to further my growth as a developer and learn from others, just as I learned from Actualize.
+</p>
                       
                         </ul>
+
                     </div>
                 </div>
             </div>
@@ -87,95 +90,148 @@
         <!-- /.container -->
 
     </div>
-    <!-- /.intro-header -->
-
-    <!-- Page Content -->
+    <!-- /.intro-header --> 
 
 	<a  name="services"></a>
-    <div class="content-section-a">
+    
 
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 col-sm-6">
-                    <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">Take a look at my Github:</h2>
-                    <p class="lead"><a href="https://github.com/thaker-nish" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a> </p>
-                </div>
-                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="img/ipad.png" alt="">
+                    <h2 class="section-heading" style="color:black">Projects:</h2>
+                    <p class="lead"><a href="https://drive.google.com/file/d/0B9Y26QnRWnd7Wkc0TUxsZlZ1Tm8/view?usp=sharing" class="btn btn-default btn-lg"> <span class="network-name">Promotr</span></a> </p>
+                    <p class="lead"><a href="" class="btn btn-default btn-lg"> <span class="network-name">Coming Soon</span></a> </p>
+                    <p class="lead"><a href="" class="btn btn-default btn-lg"> <span class="network-name">Coming Soon</span></a> </p>
                 </div>
             </div>
 
         </div>
+        
         <!-- /.container -->
+        <script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
 
-    </div>
-    <!-- /.content-section-a -->
+var width = 960,
+    height = 500,
+    outerRadius = Math.min(width, height) * .5 - 10,
+    innerRadius = outerRadius * .6;
 
-    <div class="content-section-b">
+var n = 10,
+    data0 = d3.range(n).map(Math.random),
+    data1 = d3.range(n).map(Math.random),
+    data;
 
-        <div class="container">
+var color = d3.scale.category20();
 
-            <div class="row">
-                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">3D Device Mockups<br>by PSDCovers</h2>
-                    <p class="lead">Turn your 2D designs into high quality, 3D product shots in seconds using free Photoshop actions by <a target="_blank" href="http://www.psdcovers.com/">PSDCovers</a>! Visit their website to download some of their awesome, free photoshop actions!</p>
-                </div>
-                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                    <img class="img-responsive" src="img/dog.png" alt="">
-                </div>
-            </div>
+var arc = d3.svg.arc();
 
-        </div>
-        <!-- /.container -->
+var pie = d3.layout.pie()
+    .sort(null);
 
-    </div>
-    <!-- /.content-section-b -->
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
 
-    <div class="content-section-a">
+svg.selectAll(".arc")
+    .data(arcs(data0, data1))
+  .enter().append("g")
+    .attr("class", "arc")
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+  .append("path")
+    .attr("fill", function(d, i) { return color(i); })
+    .attr("d", arc);
 
-        <div class="container">
+transition(1);
 
-            <div class="row">
-                <div class="col-lg-5 col-sm-6">
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">Google Web Fonts and<br>Font Awesome Icons</h2>
-                    <p class="lead">This template features the 'Lato' font, part of the <a target="_blank" href="http://www.google.com/fonts">Google Web Font library</a>, as well as <a target="_blank" href="http://fontawesome.io">icons from Font Awesome</a>.</p>
-                </div>
-                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="img/phones.png" alt="">
-                </div>
-            </div>
+function arcs(data0, data1) {
+  var arcs0 = pie(data0),
+      arcs1 = pie(data1),
+      i = -1,
+      arc;
+  while (++i < n) {
+    arc = arcs0[i];
+    arc.innerRadius = innerRadius;
+    arc.outerRadius = outerRadius;
+    arc.next = arcs1[i];
+  }
+  return arcs0;
+}
 
-        </div>
-        <!-- /.container -->
+function transition(state) {
+  var path = d3.selectAll(".arc > path")
+      .data(state ? arcs(data0, data1) : arcs(data1, data0));
 
-    </div>
-    <!-- /.content-section-a -->
+  // Wedges split into two rings.
+  var t0 = path.transition()
+      .duration(1000)
+      .attrTween("d", tweenArc(function(d, i) {
+        return {
+          innerRadius: i & 1 ? innerRadius : (innerRadius + outerRadius) / 2,
+          outerRadius: i & 1 ? (innerRadius + outerRadius) / 2 : outerRadius
+        };
+      }));
 
-	<a  name="contact"></a>
+  // Wedges translate to be centered on their final position.
+  var t1 = t0.transition()
+      .attrTween("d", tweenArc(function(d, i) {
+        var a0 = d.next.startAngle + d.next.endAngle,
+            a1 = d.startAngle - d.endAngle;
+        return {
+          startAngle: (a0 + a1) / 2,
+          endAngle: (a0 - a1) / 2
+        };
+      }));
+
+  // Wedges then update their values, changing size.
+  var t2 = t1.transition()
+        .attrTween("d", tweenArc(function(d, i) {
+          return {
+            startAngle: d.next.startAngle,
+            endAngle: d.next.endAngle
+          };
+        }));
+
+  // Wedges reunite into a single ring.
+  var t3 = t2.transition()
+      .attrTween("d", tweenArc(function(d, i) {
+        return {
+          innerRadius: innerRadius,
+          outerRadius: outerRadius
+        };
+      }));
+
+  setTimeout(function() { transition(!state); }, 5000);
+}
+
+function tweenArc(b) {
+  return function(a, i) {
+    var d = b.call(this, a, i), i = d3.interpolate(a, d);
+    for (var k in d) a[k] = d[k]; // update data
+    return function(t) { return arc(i(t)); };
+  };
+}
+
+</script>
+    <!-- Page Content -->
+
+
     <div class="banner">
+	<a  name="contact"></a>
 
         <div class="container">
 
             <div class="row">
                 <div class="col-lg-6">
-                    <h2>Connect to Start Bootstrap:</h2>
+                    <h2>Contact me!</h2>
                 </div>
                 <div class="col-lg-6">
                     <ul class="list-inline banner-social-buttons">
                         <li>
-                            <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
-                        </li>
-                        <li>
                             <a href="https://github.com/thaker-nish" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
                         </li>
                         <li>
-                            <a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
+                            <a href="https://www.linkedin.com/in/nishant-thaker" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
                         </li>
                     </ul>
                 </div>
@@ -202,7 +258,7 @@
                         </li>
                         <li class="footer-menu-divider">&sdot;</li>
                         <li>
-                            <a href="#services">Services</a>
+                            <a href="#services">Portfolio</a>
                         </li>
                         <li class="footer-menu-divider">&sdot;</li>
                         <li>
@@ -222,5 +278,6 @@
     <script src="js/bootstrap.min.js"></script>
 
 </body>
+</html>
 
 </html>
