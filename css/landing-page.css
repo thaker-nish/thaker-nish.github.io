@@ -39,6 +39,12 @@ h6 {
     filter:contrast(60%);
 }
 
+.projects {
+    background: url(https://static.pexels.com/photos/35107/pexels-photo.jpg) no-repeat center center;
+    background-size: cover;
+    filter: contrast(60%);
+}
+
 .intro-container {
     text-align: center;
     color: #f8f8f8;
